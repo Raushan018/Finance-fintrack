@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg-base:        #0a0a0f;
+  --bg-surface:     #111118;
+  --bg-elevated:    #1a1a24;
+  --border:         #1f1f2e;
+  --border-strong:  #2d2d42;
+  --text-primary:   #f1f0ff;
+  --text-secondary: #9896b8;
+  --text-muted:     #4a4867;
+  --accent:         #6366f1;
+  --accent-hover:   #4f46e5;
+  --success:        #22c55e;
+  --danger:         #ef4444;
+  --warning:        #f59e0b;
+}
+
+.light {
+  --bg-base:        #f5f5fa;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #eeeef8;
+  --border:         #e2e2f0;
+  --border-strong:  #c8c8e0;
+  --text-primary:   #0f0e1a;
+  --text-secondary: #5c5a7a;
+  --text-muted:     #a09ec0;
+  --accent:         #6366f1;
+  --accent-hover:   #4f46e5;
+  --success:        #16a34a;
+  --danger:         #dc2626;
+  --warning:        #d97706;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn    { from { opacity: 0 }                              to { opacity: 1 } }
+@keyframes scaleIn   { from { opacity: 0; transform: scale(0.96) }     to { opacity: 1; transform: scale(1) } }
+@keyframes slideUp   { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes spin      { to { transform: rotate(360deg) } }
+
+.animate-fade-in   { animation: fadeIn    0.2s ease-out both; }
+.animate-scale-in  { animation: scaleIn   0.2s ease-out both; }
+.animate-slide-up  { animation: slideUp   0.25s ease-out both; }
+.animate-slide-down{ animation: slideDown 0.2s  ease-out both; }
+.animate-spin      { animation: spin 0.8s linear infinite; }
+
+/* Staggered children */
+.animate-slide-up > *:nth-child(1) { animation-delay: 0ms; }
+.animate-slide-up > *:nth-child(2) { animation-delay: 40ms; }
+.animate-slide-up > *:nth-child(3) { animation-delay: 80ms; }
+.animate-slide-up > *:nth-child(4) { animation-delay: 120ms; }
+
+/* ─── Recharts overrides ─────────────────────────────────────── */
+.recharts-tooltip-wrapper { outline: none !important; }
